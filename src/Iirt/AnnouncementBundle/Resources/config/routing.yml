@@ -1,0 +1,3 @@
+iirt_announcement_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IirtAnnouncementBundle:Default:index }

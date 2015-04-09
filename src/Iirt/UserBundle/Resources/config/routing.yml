@@ -1,0 +1,25 @@
+iirt_user_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IirtUserBundle:Default:index }
+    
+iirt_user_add:
+    path:     /ajouter
+    defaults: { _controller: IirtUserBundle:User:ajouter }
+    
+iirt_user_read:
+    path:     /afficher/{id}
+    defaults: { _controller: IirtUserBundle:User:afficher }
+    requirements:
+        id:  \d+
+
+iirt_user_modify:
+    path:     /modifier/{id}
+    defaults: { _controller: IirtUserBundle:User:modifier }
+    requirements:
+        id:  \d+
+    
+iirt_user_delete:
+    path:     /supprimer/{id}
+    defaults: { _controller: IirtUserBundle:User:supprimer }
+    requirements:
+        id:  \d+

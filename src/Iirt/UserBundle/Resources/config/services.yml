@@ -1,0 +1,4 @@
+services:
+#    iirt_user.example:
+#        class: Iirt\UserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

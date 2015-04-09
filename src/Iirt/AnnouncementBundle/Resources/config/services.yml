@@ -1,0 +1,4 @@
+services:
+#    iirt_announcement.example:
+#        class: Iirt\AnnouncementBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

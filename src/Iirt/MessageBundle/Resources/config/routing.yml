@@ -1,0 +1,3 @@
+iirt_message_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IirtMessageBundle:Default:index }
