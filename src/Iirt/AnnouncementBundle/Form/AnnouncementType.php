@@ -5,6 +5,7 @@ namespace Iirt\AnnouncementBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Iirt\AnnouncementBundle\Form\AnnouncementFileType;
 
 class AnnouncementType extends AbstractType
 {
@@ -17,9 +18,9 @@ class AnnouncementType extends AbstractType
         $builder
             ->add('title','text')
             ->add('content','textarea')
-            ->add('date','date')
-            ->add('announcement_file')
-            ->add('student')
+            //->add('date','date')
+            ->add('announcement_file',new AnnouncementFileType())
+            //->add('student')
         ;
     }
     

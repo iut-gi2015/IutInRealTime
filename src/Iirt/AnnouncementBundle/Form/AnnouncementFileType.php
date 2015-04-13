@@ -15,7 +15,7 @@ class AnnouncementFileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url','text')
+            ->add('url','file')
             ->add('name','text')
         ;
     }

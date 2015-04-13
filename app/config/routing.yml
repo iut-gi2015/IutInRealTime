@@ -1,6 +1,6 @@
 iirt_announcement:
     resource: "@IirtAnnouncementBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /annonces
 
 iirt_message:
     resource: "@IirtMessageBundle/Resources/config/routing.yml"

@@ -56,8 +56,9 @@ class UserController extends Controller
                 $em->flush();
                 
                 return $this->redirect($this->generateUrl('iirt_user_add'));
-            }*/
-
+            }
+        }*/
+            
         }
         return $this->render('IirtUserBundle:User:ajouter.html.twig',array(
             'form' =>   $form->createView(),
