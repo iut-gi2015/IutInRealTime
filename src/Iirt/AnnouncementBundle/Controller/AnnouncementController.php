@@ -68,7 +68,7 @@ class AnnouncementController extends Controller
                 $em->persist($announcement);
                 $em->flush();
                 
-                return $this->render('IirtAnnouncementBundle:Announcement:modifier.html.twig',array('form'=>$form->createView()));
+                return $this->redirect($this->generateUrl('iirt_announcement_add'));
             }
         }    
         return $this->render('IirtAnnouncementBundle:Announcement:modifier.html.twig',array('form'=>$form->createView()));

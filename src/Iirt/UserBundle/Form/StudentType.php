@@ -20,8 +20,22 @@ class StudentType extends AbstractType
             ->add('phoneNumber','number')
             ->add('matricule','text')
             ->add('password','password')
-            ->add('cycle','text')
-            ->add('path','text')
+           ->add('cycle', 'entity', array(
+                'class' => 'IirtUserBundle:Cycle',
+                'property' => 'name'
+            ))
+            ->add('path','entity', array(
+                'class' => 'IirtUserBundle:Path',
+                'property' => 'name'
+            ))
+            ->add('niveau', 'entity', array(
+                'class' => 'IirtUserBundle:Niveau',
+                'property' => 'name'
+            ))
+            ->add('formation', 'entity', array(
+                'class' => 'IirtUserBundle:Formation',
+                'property' => 'name'
+            ))
             ->add('email','email')
             //->add('inscriptDate','date')
             //->add('able')

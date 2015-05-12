@@ -19,6 +19,59 @@ class Student
      */
     private $roles;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Cycle", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $cycle;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Formation", cascade={"persist"})
+     */
+    private $formation;
+
+    /**
+     * @return mixed
+     */
+    public function getFormation()
+    {
+        return $this->formation;
+    }
+
+    /**
+     * @param mixed $formation
+     */
+    public function setFormation($formation)
+    {
+        $this->formation = $formation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * @param mixed $niveau
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Niveau", cascade={"persist"})
+     */
+    private $niveau;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Path", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $path;
 
     /**
      * @var integer
@@ -69,21 +122,6 @@ class Student
      * @Assert\NotBlank()
      */
     private $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="cycle", type="string", length=255)
-     * 
-     */
-    private $cycle;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="path", type="string", length=255)
-     */
-    private $path;
 
     /**
      * @var string
@@ -240,52 +278,6 @@ class Student
     }
 
     /**
-     * Set cycle
-     *
-     * @param string $cycle
-     * @return Student
-     */
-    public function setCycle($cycle)
-    {
-        $this->cycle = $cycle;
-
-        return $this;
-    }
-
-    /**
-     * Get cycle
-     *
-     * @return string 
-     */
-    public function getCycle()
-    {
-        return $this->cycle;
-    }
-
-    /**
-     * Set path
-     *
-     * @param string $path
-     * @return Student
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get path
-     *
-     * @return string 
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -415,5 +407,51 @@ class Student
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * Set cycle
+     *
+     * @param \Iirt\UserBundle\Entity\Cycle $cycle
+     * @return Student
+     */
+    public function setCycle(\Iirt\UserBundle\Entity\Cycle $cycle)
+    {
+        $this->cycle = $cycle;
+
+        return $this;
+    }
+
+    /**
+     * Get cycle
+     *
+     * @return \Iirt\UserBundle\Entity\Cycle 
+     */
+    public function getCycle()
+    {
+        return $this->cycle;
+    }
+
+    /**
+     * Set path
+     *
+     * @param \Iirt\UserBundle\Entity\Path $path
+     * @return Student
+     */
+    public function setPath(\Iirt\UserBundle\Entity\Path $path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return \Iirt\UserBundle\Entity\Path 
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }
