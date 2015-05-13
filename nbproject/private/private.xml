@@ -7,10 +7,13 @@
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/UserBundle/Entity/Teacher.php</file>
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/UserBundle/Entity/Student.php</file>
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/AnnouncementBundle/Entity/Announcement.php</file>
+            <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/UserBundle/Form/StudentType.php</file>
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/UserBundle/Controller/UserController.php</file>
-            <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/AnnouncementBundle/Resources/views/Announcement/ajouter.html.twig</file>
+            <file>file:/C:/wamp/www/ProjetIUT/app/config/parameters.yml</file>
+            <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/UserBundle/Entity/Formation.php</file>
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/AnnouncementBundle/Form/AnnouncementFileType.php</file>
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/AnnouncementBundle/Controller/AnnouncementController.php</file>
+            <file>file:/C:/wamp/www/ProjetIUT/app/config/config.yml</file>
             <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/AnnouncementBundle/Entity/AnnouncementFile.php</file>
         </group>
     </open-files>
