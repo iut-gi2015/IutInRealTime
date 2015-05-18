@@ -15,6 +15,20 @@ use Iirt\AnnouncementBundle\Form\AnnouncementFileType;
 
 class AnnouncementController extends Controller
 {
+    public function indexAction()
+    {
+        // On fixe en dur une liste ici, bien entendu par la suite on la récupérera depuis la BDD !
+        $liste = array(
+        array('id' => 2, 'titre' => 'Mon dernier weekend !', 'contenu' => 'le contenu de l\'article courant!'),
+        array('id' => 5, 'titre' => 'Sortie de Symfony2.1', 'contenu' => 'le contenu de l\'article courant!'),
+        array('id' => 7, 'titre' => 'Sortie de Symfony2.1', 'contenu' => 'le contenu de l\'article courant!'),
+        array('id' => 9, 'titre' => 'Petit test', 'contenu' => 'le contenu de l\'article courant!')
+        );
+        return $this->render('IirtAnnouncementBundle:Announcement:index.html.twig', array(
+        'liste_articles' => $liste // C'est ici tout l'intérêt : le contrôleur passe les variables nécessaires au template !
+        ));    
+    }
+    
     public function ajouterAction()
     {
         $announcement = new Announcement();
@@ -47,11 +61,19 @@ class AnnouncementController extends Controller
     
     public function afficherAction($id)
     {
-        $user = $this->chercherEntity($id,'IirtAnnouncementBundle:Announcement');
-       
-        $this->checkUser($id, $user);
-                
-        return $this->render('IirtAnnouncementBundle:Announcement:afficher.html.twig',array('user'=> $user));    
+        $repository = $this->getDoctrine()->getManager()
+                            ->getRepository('IirtAnnouncementBundle:Announcement');
+        // On récupère l'entité correspondant à l'id $id
+        $annonce = $repository->find($id);
+        // $article est donc une instance de Sdz\BlogBundle\Entity\Article
+        // Ou null si aucun article n'a été trouvé avec l'id $id
+        if($annonce === null)
+        {
+            throw $this->createNotFoundException('Annonce[id='.$id.']inexistant.');
+        }
+        return $this->render('IirtAnnouncementBundle:Announcement:index.html.twig', array(
+             'annonce' => $annonce
+        ));
     }
     
     public function modifierAction($id)

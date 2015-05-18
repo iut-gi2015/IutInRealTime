@@ -147,7 +147,6 @@ Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPas
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "security.validator.user_password" previously pointing to "security.encoder_factory.generic" to "security.encoder_factory".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "security.authentication.provider.dao.demo_secured_area" previously pointing to "security.encoder_factory.generic" to "security.encoder_factory".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "twig" previously pointing to "twig.loader.filesystem" to "twig.loader".
-Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "twig.extension.acme.demo" previously pointing to "twig.loader.filesystem" to "twig.loader".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "swiftmailer.email_sender.listener" previously pointing to "monolog.logger" to "logger".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "swiftmailer.mailer.default" previously pointing to "swiftmailer.mailer.default.transport.spool" to "swiftmailer.mailer.default.transport".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "swiftmailer.mailer.default.transport" previously pointing to "swiftmailer.mailer.default.spool.memory" to "swiftmailer.mailer.default.spool".
@@ -158,7 +157,7 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.proxy_cache_warmer" to "cache_warmer".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "session.attribute_bag" to "session".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "session.flash_bag" to "session".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "4b8b81cdcfbc007364fbe9bb626a7dc95e04a4ab3720b06909646c24faee7f5c_1" to "form.resolved_type_factory".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "9cd63c92490b51d366cf75434401dbd4d13ebc55f6320aa5b2eae661696e67e9_1" to "form.resolved_type_factory".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "form.extension" to "form.registry".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "form.type_extension.form.request_handler" to "form.type_extension.form.http_foundation".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "security.csrf.token_generator" to "security.csrf.token_manager".
@@ -231,9 +230,9 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "twig.extension.webprofiler" to "twig".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "twig.form.renderer" to "twig.extension.form".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "twig.form.engine" to "twig.form.renderer".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "5b4ca5b6c13d5954758a8211a52e43eedb7fd94423619bbd689a39a551dfcdaa_1" to "swiftmailer.mailer.default.transport.authhandler".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "5b4ca5b6c13d5954758a8211a52e43eedb7fd94423619bbd689a39a551dfcdaa_2" to "swiftmailer.mailer.default.transport.authhandler".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "5b4ca5b6c13d5954758a8211a52e43eedb7fd94423619bbd689a39a551dfcdaa_3" to "swiftmailer.mailer.default.transport.authhandler".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "2a27993b40f2c7d2db54b071fc92dd70c4a91d83d3175e48f21f8950a5ae02f1_1" to "swiftmailer.mailer.default.transport.authhandler".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "2a27993b40f2c7d2db54b071fc92dd70c4a91d83d3175e48f21f8950a5ae02f1_2" to "swiftmailer.mailer.default.transport.authhandler".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "2a27993b40f2c7d2db54b071fc92dd70c4a91d83d3175e48f21f8950a5ae02f1_3" to "swiftmailer.mailer.default.transport.authhandler".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "swiftmailer.transport.replacementfactory" to "swiftmailer.mailer.default.transport.buffer".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "assetic.twig_formula_loader" to "assetic.asset_manager".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "assetic.twig_directory_resource.kernel" to "assetic.asset_manager".
@@ -276,7 +275,7 @@ Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Remo
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "templating.asset.default_package"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "validator.mapping.cache.apc"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "validator.validator_factory"; reason: unused
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "4b8b81cdcfbc007364fbe9bb626a7dc95e04a4ab3720b06909646c24faee7f5c_1"; reason: unused
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "9cd63c92490b51d366cf75434401dbd4d13ebc55f6320aa5b2eae661696e67e9_1"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "profiler.storage"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "data_collector.config"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "data_collector.ajax"; reason: unused
@@ -341,9 +340,9 @@ Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Remo
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "twig.form.engine"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "twig.form.renderer"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "twig.extension.debug"; reason: unused
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "5b4ca5b6c13d5954758a8211a52e43eedb7fd94423619bbd689a39a551dfcdaa_3"; reason: unused
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "5b4ca5b6c13d5954758a8211a52e43eedb7fd94423619bbd689a39a551dfcdaa_2"; reason: unused
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "5b4ca5b6c13d5954758a8211a52e43eedb7fd94423619bbd689a39a551dfcdaa_1"; reason: unused
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "2a27993b40f2c7d2db54b071fc92dd70c4a91d83d3175e48f21f8950a5ae02f1_3"; reason: unused
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "2a27993b40f2c7d2db54b071fc92dd70c4a91d83d3175e48f21f8950a5ae02f1_2"; reason: unused
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "2a27993b40f2c7d2db54b071fc92dd70c4a91d83d3175e48f21f8950a5ae02f1_1"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "swiftmailer.transport.failover"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "swiftmailer.transport.mailinvoker"; reason: unused
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "swiftmailer.transport.replacementfactory"; reason: unused

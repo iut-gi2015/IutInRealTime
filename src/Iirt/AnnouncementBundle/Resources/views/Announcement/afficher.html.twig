@@ -1,15 +1,10 @@
-{# src/Iirt/UserBundle/Resources/views/User/ajouter.html.twig #}
+{# src/Iirt/AnnouncementBundle/Resources/views/User/ajouter.html.twig #}
+{% extends "IirtUserBundle::layout.html.twig" %}
 
-<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"
-type="text/css" />
-
+{% block contenu %}
 <h3>Formulaire Utilisateur</h3>
 <div class="well">
-    <form method="post" {{ form_enctype(user) }}>
-        {{ form_widget(user) }}
-         <input type="submit" class="btn btn-primary" />
-    </form>
+    {{ annonce.title }}
+         
 </div>
-
-<script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
+{% endblock %}

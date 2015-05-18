@@ -1,3 +1,7 @@
 iirt_message_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: IirtMessageBundle:Default:index }
+    path:     /message/index
+    defaults: { _controller: IirtMessageBundle:message:index }
+    
+iirt_message_ajout:
+    path:     /message/ajouter
+    defaults: { _controller: IirtMessageBundle:message:ajouter }

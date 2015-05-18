@@ -1,25 +1,25 @@
-iirt_announcement_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: IirtAnnouncementBundle:Default:index }
+iirt_announcement:
+    path:     /annonces/index
+    defaults: { _controller: IirtAnnouncementBundle:Announcement:index }
 
 iirt_announcement_add:
-    path:     annonces/ajouter
+    path:     /annonces/ajouter
     defaults: { _controller: IirtAnnouncementBundle:Announcement:ajouter }
     
 iirt_announcement_read:
-    path:     annonces/afficher/{id}
+    path:     /annonces/afficher/{id}
     defaults: { _controller: IirtAnnouncementBundle:Announcement:afficher }
     requirements:
         id:  \d+ 
     
 iirt_announcement_modify:
-    path:     annonces/modifier/{id}
+    path:     /annonces/modifier/{id}
     defaults: { _controller: IirtAnnouncementBundle:Announcement:modifier }
     requirements:
         id:  \d+
     
 iirt_announcement_delete:
-    path:     annonces/supprimer/{id}
+    path:     /annonces/supprimer/{id}
     defaults: { _controller: IirtAnnouncementBundle:Announcement:supprimer } 
     requirements:
         id:  \d+

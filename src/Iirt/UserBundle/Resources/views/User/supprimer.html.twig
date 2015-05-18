@@ -1,8 +1,8 @@
 {# src/Iirt/UserBundle/Resources/views/User/ajouter.html.twig #}
 
-<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"
-type="text/css" />
+{% extends "IirtUserBundle::layout.html.twig" %}
 
+{% block contenu %}
 <h3>Formulaire Utilisateur</h3>
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
@@ -11,5 +11,4 @@ type="text/css" />
     </form>
 </div>
 
-<script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
+{% endblock %}

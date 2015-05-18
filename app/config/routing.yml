@@ -1,6 +1,6 @@
 iirt_announcement:
     resource: "@IirtAnnouncementBundle/Resources/config/routing.yml"
-    prefix:   /annonces
+    prefix:   /
 
 iirt_message:
     resource: "@IirtMessageBundle/Resources/config/routing.yml"
@@ -9,7 +9,3 @@ iirt_message:
 iirt_user:
     resource: "@IirtUserBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation

@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/ProjetIUT/src/Iirt/UserBundle/Controller/UserController.php</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/views/message/index.html.twig</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/AppBundle/Controller/DefaultController.php</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Controller/MessageController.php</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/views/message/ajouter.html.twig</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/views/layout.html.twig</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/config/routing.yml</file>
+            <file>file:/C:/wamp/www/IutinRealTime/app/Resources/views/layout.html.twig</file>
         </group>
     </open-files>
 </project-private>

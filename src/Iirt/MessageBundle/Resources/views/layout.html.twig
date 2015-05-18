@@ -1,0 +1,24 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+ message ...
+{% endblock %}
+
+{% block section %}
+    
+      <nav>
+        <ul>
+          <li class="current">
+              <a href="{{ path('iirt_message_homepage') }}" class="m2" >liste </a>
+          </li>
+          <li>
+              <a href="{{ path('iirt_message_ajout') }}" class="m2" >rediger </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="row">
+        {% block contenu %}
+            
+        {% endblock %}
+        </div>
+
+{% endblock %}

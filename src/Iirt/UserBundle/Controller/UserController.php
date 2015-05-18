@@ -14,6 +14,12 @@ use Iirt\UserBundle\Form\TeacherType;
 
 class UserController extends Controller
 {
+    
+    public function indexAction()
+    {
+        return $this->render('IirtUserBundle:User:index.html.twig');    
+    }
+    
     public function ajouterAction()
     {
         $student = new Student;
