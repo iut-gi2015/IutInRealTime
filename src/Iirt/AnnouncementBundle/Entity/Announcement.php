@@ -3,6 +3,7 @@
 namespace Iirt\AnnouncementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Announcement
@@ -38,6 +39,7 @@ class Announcement
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -45,6 +47,7 @@ class Announcement
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * 
      */
     private $content;
 

@@ -1,17 +1,16 @@
 <?php
 
-namespace Iirt\AnnouncementBundle\Entity;
+namespace Iirt\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * AnnouncementFile
+ * Formation
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Iirt\AnnouncementBundle\Entity\AnnouncementFileRepository")
+ * @ORM\Entity(repositoryClass="Iirt\UserBundle\Entity\FormationRepository")
  */
-class AnnouncementFile
+class Formation
 {
     /**
      * @var integer
@@ -24,16 +23,8 @@ class AnnouncementFile
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="url", type="string", length=255)
-     */
-    private $url;
-
-    /**
-     * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $name;
 
@@ -49,33 +40,10 @@ class AnnouncementFile
     }
 
     /**
-     * Set url
-     *
-     * @param string $url
-     * @return AnnouncementFile
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
-     * @return AnnouncementFile
+     * @return Formation
      */
     public function setName($name)
     {
