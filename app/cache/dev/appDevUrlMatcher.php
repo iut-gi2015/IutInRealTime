@@ -165,8 +165,13 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // iirt_message_ajout
-            if ($pathinfo === '/message/ajouter') {
+            if ($pathinfo === '/message/ajouter/{id_teacher, id_student}') {
                 return array (  '_controller' => 'Iirt\\MessageBundle\\Controller\\messageController::ajouterAction',  '_route' => 'iirt_message_ajout',);
+            }
+
+            // iirt_message_new
+            if ($pathinfo === '/message/new') {
+                return array (  '_controller' => 'Iirt\\MessageBundle\\Controller\\messageController::newAction',  '_route' => 'iirt_message_new',);
             }
 
         }

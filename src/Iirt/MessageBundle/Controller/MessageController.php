@@ -17,12 +17,22 @@ class MessageController extends Controller
         return $this->render('IirtMessageBundle:message:index.html.twig');
     }
     
-    public function ajouterAction(){
+    public function newAction()
+    {
+        $repository = $this->getDoctrine()
+                        ->getManager()
+                        ->getRepository('IirtUserBundle:Teacher');
+        $liste = $repository->findAll();
+        
+        return $this->render('IirtMessageBundle:message:newMessage.html.twig', array('liste' => $liste));
+    }
+    
+    public function ajouterAction($id_teacher, $id_student){
             // Création de l'entité
 
         $message = new Message();
-        //$student = new Student();
-        //$teacher = new Teacher();
+        $message->setStudent($id_student);
+        $message->setTeacher($id_teacher);
         
         $form = $this->createForm(new MessageType, $message);
         $request = $this->get('request');
@@ -41,6 +51,6 @@ class MessageController extends Controller
             }
         }
         return $this->render('IirtMessageBundle:message:ajouter.html.twig',
-        array('form' => $form->createView()));
+        array('form' => $form->createView(), 'teacher' => $nameTeacher));
     }
 }

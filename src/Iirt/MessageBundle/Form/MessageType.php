@@ -19,9 +19,9 @@ class MessageType extends AbstractType
             ->add('content','textarea')
             ->add('date','date')
             ->add('read_or_no')
-            ->add('message_file', new MessageFileType())
-            ->add('student','text')
-            ->add('teacher','choice')
+            ->add('message_file', new MessageFileType(), array('required' => false))
+            ->add('student','integer')
+            ->add('teacher','integer')
         ;
     }
     
