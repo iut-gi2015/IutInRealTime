@@ -23,3 +23,11 @@ iirt_user_delete:
     defaults: { _controller: IirtUserBundle:User:supprimer }
     requirements:
         id:  \d+
+
+iirt_user_login:
+    path:     /login
+    defaults: { _controller: IirtUserBundle:User:login }
+
+iirt_user_logout:
+    path:     /logout
+    defaults: { _controller: IirtUserBundle:User:logout }    
