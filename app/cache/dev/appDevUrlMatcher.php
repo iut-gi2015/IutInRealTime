@@ -127,84 +127,82 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // homepage
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'homepage');
+        if (0 === strpos($pathinfo, '/annonces')) {
+            // iirt_announcement
+            if ($pathinfo === '/annonces/index') {
+                return array (  '_controller' => 'Iirt\\AnnouncementBundle\\Controller\\AnnouncementController::indexAction',  '_route' => 'iirt_announcement',);
             }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+            if (0 === strpos($pathinfo, '/annonces/a')) {
+                // iirt_announcement_add
+                if ($pathinfo === '/annonces/ajouter') {
+                    return array (  '_controller' => 'Iirt\\AnnouncementBundle\\Controller\\AnnouncementController::ajouterAction',  '_route' => 'iirt_announcement_add',);
+                }
+
+                // iirt_announcement_read
+                if (0 === strpos($pathinfo, '/annonces/afficher') && preg_match('#^/annonces/afficher/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'iirt_announcement_read')), array (  '_controller' => 'Iirt\\AnnouncementBundle\\Controller\\AnnouncementController::afficherAction',));
+                }
+
+            }
+
+            // iirt_announcement_modify
+            if (0 === strpos($pathinfo, '/annonces/modifier') && preg_match('#^/annonces/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'iirt_announcement_modify')), array (  '_controller' => 'Iirt\\AnnouncementBundle\\Controller\\AnnouncementController::modifierAction',));
+            }
+
+            // iirt_announcement_delete
+            if (0 === strpos($pathinfo, '/annonces/supprimer') && preg_match('#^/annonces/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'iirt_announcement_delete')), array (  '_controller' => 'Iirt\\AnnouncementBundle\\Controller\\AnnouncementController::supprimerAction',));
+            }
+
         }
 
-        // _welcome
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_welcome');
+        if (0 === strpos($pathinfo, '/message')) {
+            // iirt_message_homepage
+            if ($pathinfo === '/message/index') {
+                return array (  '_controller' => 'IirtMessageBundle:message:index',  '_route' => 'iirt_message_homepage',);
             }
 
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
+            // iirt_message_ajout
+            if ($pathinfo === '/message/ajouter/{id_teacher, id_student}') {
+                return array (  '_controller' => 'Iirt\\MessageBundle\\Controller\\messageController::ajouterAction',  '_route' => 'iirt_message_ajout',);
+            }
+
+            // iirt_message_new
+            if ($pathinfo === '/message/new') {
+                return array (  '_controller' => 'Iirt\\MessageBundle\\Controller\\messageController::newAction',  '_route' => 'iirt_message_new',);
+            }
+
         }
 
-        if (0 === strpos($pathinfo, '/demo')) {
-            if (0 === strpos($pathinfo, '/demo/secured')) {
-                if (0 === strpos($pathinfo, '/demo/secured/log')) {
-                    if (0 === strpos($pathinfo, '/demo/secured/login')) {
-                        // _demo_login
-                        if ($pathinfo === '/demo/secured/login') {
-                            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::loginAction',  '_route' => '_demo_login',);
-                        }
+        if (0 === strpos($pathinfo, '/user')) {
+            // iirt_user
+            if ($pathinfo === '/user/index') {
+                return array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'iirt_user',);
+            }
 
-                        // _demo_security_check
-                        if ($pathinfo === '/demo/secured/login_check') {
-                            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::securityCheckAction',  '_route' => '_demo_security_check',);
-                        }
-
-                    }
-
-                    // _demo_logout
-                    if ($pathinfo === '/demo/secured/logout') {
-                        return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::logoutAction',  '_route' => '_demo_logout',);
-                    }
-
+            if (0 === strpos($pathinfo, '/user/a')) {
+                // iirt_user_add
+                if ($pathinfo === '/user/ajouter') {
+                    return array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::ajouterAction',  '_route' => 'iirt_user_add',);
                 }
 
-                if (0 === strpos($pathinfo, '/demo/secured/hello')) {
-                    // acme_demo_secured_hello
-                    if ($pathinfo === '/demo/secured/hello') {
-                        return array (  'name' => 'World',  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',  '_route' => 'acme_demo_secured_hello',);
-                    }
-
-                    // _demo_secured_hello
-                    if (preg_match('#^/demo/secured/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_secured_hello')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',));
-                    }
-
-                    // _demo_secured_hello_admin
-                    if (0 === strpos($pathinfo, '/demo/secured/hello/admin') && preg_match('#^/demo/secured/hello/admin/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_secured_hello_admin')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloadminAction',));
-                    }
-
+                // iirt_user_read
+                if (0 === strpos($pathinfo, '/user/afficher') && preg_match('#^/user/afficher/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'iirt_user_read')), array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::afficherAction',));
                 }
 
             }
 
-            // _demo
-            if (rtrim($pathinfo, '/') === '/demo') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', '_demo');
-                }
-
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => '_demo',);
+            // iirt_user_modify
+            if (0 === strpos($pathinfo, '/user/modifier') && preg_match('#^/user/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'iirt_user_modify')), array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::modifierAction',));
             }
 
-            // _demo_hello
-            if (0 === strpos($pathinfo, '/demo/hello') && preg_match('#^/demo/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_hello')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::helloAction',));
-            }
-
-            // _demo_contact
-            if ($pathinfo === '/demo/contact') {
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',  '_route' => '_demo_contact',);
+            // iirt_user_delete
+            if (0 === strpos($pathinfo, '/user/supprimer') && preg_match('#^/user/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'iirt_user_delete')), array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::supprimerAction',));
             }
 
         }

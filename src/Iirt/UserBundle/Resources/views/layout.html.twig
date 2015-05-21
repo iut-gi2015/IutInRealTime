@@ -1,0 +1,20 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+ nom de l'utilisateur
+{% endblock %}
+
+{% block section %}
+    
+      <nav>
+        <ul>
+          <li class="current"><a href="" class="m1">liste des messages</a></li>
+          <li><a href="" class="m2">rediger un message</a></li>
+        </ul>
+      </nav>
+      <div class="row">
+        {% block contenu %}
+            
+        {% endblock %}
+        </div>
+
+{% endblock %}

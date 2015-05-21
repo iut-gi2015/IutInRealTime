@@ -17,6 +17,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+    
+    public function indexAction()
+    {
+        return $this->render('IirtUserBundle:User:index.html.twig');    
+    }
+    
     public function ajouterAction()
     {
         $request = $this->get('request');

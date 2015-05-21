@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{% block title %}
+
+{% endblock %}</title>
+
+<meta charset="utf-8">
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="all" />
+{% endblock %}
+</head>
+<body id="page1">
+<!-- START PAGE SOURCE -->
+<div class="container">
+<div class="wrap">
+  <header>
+    <div class="row" class="cont">
+      
+      <nav>
+        <ul>
+          <li class="current"><a href="{{ path('iirt_announcement') }}" class="m1">Accueil</a></li>
+          <li><a href="about-us.html" class="m2">anciens articles</a></li>
+          <li><a href="articles.html" class="m3">info utiles</a></li>
+          <li><a href="contact-us.html" class="m4">tchat</a></li>
+          <li class="last"><a href="sitemap.html" class="m5">faq</a></li>
+        </ul>
+      </nav>
+	  </div>
+	  <div class="row">
+	  <div class="col-lg-7" >
+	  <h1><a href="#">Student's site</a></h1>
+	  </div>
+	  <div class="col-lg-5">
+	  <div  id="">
+		
+	<div  >
+            <a class="trigger" href="#"> connexion </a>
+            <div id="connexion" class="col-lg-8"  hidden >
+            <form action="#" method="post" id="form_connect"  >
+                
+		<div class="form-group">
+                    <input type="text" id="pseud" name="pseudo" placeholder="pseudo" class="form-control" />
+                    </div>
+		<div class="form-group">
+                    <input type="password" id="passwrd" name="password" placeholder="mot de passe" class="form-control" />
+                    </div>
+		<div class="form-group">
+                    <label for="souvenir" >
+                    <input style="width: 25px;" type="checkbox" id="souvenir" name="souvenir" value="souvenir" />se souvenir de moi</label>
+                    </div>
+                    <input class="btn btn-primary pullright" type="submit" value="connexion" />
+
+            </form>
+                
+            <div class='gauche' >
+            <a href="" id="mplost" > mot de passe oublié</a>
+            </div>
+	</div>
+    </div></div> </div>
+	</div>
+  </header>
+  <div class="row">
+    <aside class="col-lg-3">
+       {#ici on appelle directement le controleur dans l'aside #}
+      <h2>menu <span>utilisateur</span></h2>
+      <ul class="">
+        <li><a href="{{ path('iirt_announcement') }}">annonces</a></li>
+        <li><a href="{{ path('iirt_message_homepage') }}">messages</a></li>
+        <li><a href="{{ path('iirt_user') }}">gestion éditeur</a></li>
+      </ul>
+      <h2>Fresh <span>News</span></h2>
+      <ul class="news">
+        <li><strong>June 30, 2010</strong>
+          <h4><a href="#">Sed ut perspiciatis unde</a></h4>
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque. </li>
+      </ul>
+	  <h2>Calendrier</h2>
+    </aside>
+    <section class="col-lg-9" id="content">
+      {% block bannierre %}
+          
+       {% endblock %} 
+       
+       {% block section %}
+       {% endblock %}
+    </section>
+  </div>
+</div>
+    <footer>
+      <div class="foot">
+            <div style="clear:both;">
+                <p class="lf">Copyright &copy; 2015 <a href="#">club gi (iut in real time)</a> - All Rights Reserved</p>
+            <!-- <p class="rf">Design by <a href="http://www.templatemonster.com/">TemplateMonster</a></p> -->
+            </div>
+      </div>
+    </footer>
+</div>
+{% block javascript %}
+<script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
+<script type="text/javascript">
+    
+    /* LA CONNEXION */
+    $(".trigger").click(function(e){
+            e.preventDefault();
+            $("#connexion").slideToggle();
+    });
+		
+</script>
+{% endblock %}
+<!--<script type="text/javascript"> Cufon.now(); </script>
+ END PAGE SOURCE -->
+</body>
+</html>

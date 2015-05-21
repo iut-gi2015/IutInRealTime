@@ -67,7 +67,11 @@ class Message
      * @ORM\Column(name="read_or_no", type="boolean")
      */
     private $read_or_no;
-
+    
+    public function __construct()
+    {
+        $this->date = new \Datetime;
+    }
 
     /**
      * Get id
