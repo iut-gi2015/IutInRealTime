@@ -1,2 +1,6 @@
-app/cache
-app/logs
+app/cache/
+app/logs/
+.project
+.settings/
+.classpath
+nbproject/
