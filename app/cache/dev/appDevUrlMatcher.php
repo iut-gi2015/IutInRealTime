@@ -207,6 +207,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/log')) {
+            // iirt_user_login
+            if ($pathinfo === '/login') {
+                return array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::loginAction',  '_route' => 'iirt_user_login',);
+            }
+
+            // iirt_user_logout
+            if ($pathinfo === '/logout') {
+                return array (  '_controller' => 'Iirt\\UserBundle\\Controller\\UserController::logoutAction',  '_route' => 'iirt_user_logout',);
+            }
+
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

@@ -37,12 +37,26 @@
 	  <div  id="">
 		
 	<div  >
-            <a class="trigger" href="#"> connexion </a>
+            <a class="inscript" href="#"> Inscription </a>
+            <div id="inscription" class="col-lg-8"  hidden >
+            <form action="{{ path('iirt_user_add') }}" method="post" id="form_connect">
+                
+                <div class="form-group">
+                <input type="radio" id="enseignant" name="type" value=2 />Enseignant
+                <input type="radio" id="etudiant" name="type" value=1 />Etudiant
+                </div>
+                <div class="form-group">
+                <input class="btn btn-primary pullright" type="submit" value="Inscription" />
+                </div>
+            </form>
+            </div>
+        
+            <a class="trigger" href="#"> Connexion </a>
             <div id="connexion" class="col-lg-8"  hidden >
             <form action="#" method="post" id="form_connect"  >
                 
 		<div class="form-group">
-                    <input type="text" id="pseud" name="pseudo" placeholder="pseudo" class="form-control" />
+                    <input type="text" id="pseud" name="pseudo" placeholder="login" class="form-control" />
                     </div>
 		<div class="form-group">
                     <input type="password" id="passwrd" name="password" placeholder="mot de passe" class="form-control" />
@@ -99,8 +113,8 @@
     </footer>
 </div>
 {% block javascript %}
-<script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery_1.js')}}"></script>
 <script type="text/javascript">
     
     /* LA CONNEXION */
@@ -108,7 +122,12 @@
             e.preventDefault();
             $("#connexion").slideToggle();
     });
-		
+    
+    /* L'INSCRIPTION */
+    $(".inscript").click(function(e){
+            e.preventDefault();
+            $("#inscription").slideToggle();
+			});
 </script>
 {% endblock %}
 <!--<script type="text/javascript"> Cufon.now(); </script>
