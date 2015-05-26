@@ -1,11 +1,15 @@
  
-iirt_user:
+iirt_user_homepage:
     path:     user/index
     defaults: { _controller: IirtUserBundle:User:index }
  
-iirt_user_add:
-    path:     user/ajouter
-    defaults: { _controller: IirtUserBundle:User:ajouter }
+iirt_user_add_student:
+    path:     user/ajouteretudiant/
+    defaults: { _controller: IirtUserBundle:User:ajouterEtud }
+    
+iirt_user_add_teacher:
+    path:     user/ajouterenseignant/
+    defaults: { _controller: IirtUserBundle:User:ajouterEns }    
     
 iirt_user_read:
     path:     user/afficher/{id}
@@ -13,11 +17,17 @@ iirt_user_read:
     requirements:
         id:  \d+
 
-iirt_user_modify:
-    path:     user/modifier/{id}
-    defaults: { _controller: IirtUserBundle:User:modifier }
+iirt_user_modify_student:
+    path:     user/modifieretudiant/{id}
+    defaults: { _controller: IirtUserBundle:User:modifierEtud }
     requirements:
         id:  \d+
+        
+iirt_user_modify_teacher:
+    path:     user/modifierenseignant/{id}
+    defaults: { _controller: IirtUserBundle:User:modifierEns }
+    requirements:
+        id:  \d+        
     
 iirt_user_delete:
     path:     user/supprimer/{id}
