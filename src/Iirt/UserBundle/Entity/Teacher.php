@@ -54,10 +54,7 @@ class Teacher
     private $password;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="department", type="string", length=255)
-     *
+     * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Department", cascade={"persist"})
      */
     private $department;
 

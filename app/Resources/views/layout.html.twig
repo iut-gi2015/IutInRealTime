@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+    
+{# if(app.session.get('name') OR app.session.get('connect')) #}
 <head>
 <title>{% block title %}
 
@@ -34,6 +36,9 @@
 	  <h1><a href="#">Student's site</a></h1>
 	  </div>
 	  <div class="col-lg-5">
+            {%if app.session.get('name')  %}
+                {{ app.session.get('name') }} <a class="inscript" href="{{ path('iirt_user_logout') }}"> Deconnexion </a>
+            {% else %}
 	  <div  id="">
 		
 	<div  >
@@ -56,7 +61,7 @@
             <form action="{{ path('iirt_user_login') }}" method="post" id="form_connect"  >
                 
 		<div class="form-group">
-                    <input type="text" id="pseud" name="pseudo" placeholder="login" class="form-control" />
+                    <input type="text" id="pseud" name="pseudo" placeholder="matricule" class="form-control" />
                     </div>
 		<div class="form-group">
                     <input type="password" id="passwrd" name="password" placeholder="mot de passe" class="form-control" />
@@ -73,23 +78,28 @@
                     <input class="btn btn-primary pullright" type="submit" value="connexion" />
 
             </form>
-                
+              
             <div class='gauche' >
             <a href="" id="mplost" > mot de passe oublié</a>
             </div>
 	</div>
-    </div></div> </div>
+       </div>    
+            {% endif %}
+    </div> </div>
 	</div>
   </header>
   <div class="row">
     <aside class="col-lg-3">
+       {% if(app.session.get('matricule')) %}
        {#ici on appelle directement le controleur dans l'aside #}
-      <h2>menu <span>utilisateur</span></h2>
-      <ul class="">
-        <li><a href="{{ path('iirt_announcement') }}">annonces</a></li>
-        <li><a href="{{ path('iirt_message_homepage') }}">messages</a></li>
-        <li><a href="{{ path('iirt_user_homepage') }}">gestion éditeur</a></li>
-      </ul>
+        <h2>menu <span>utilisateur</span></h2>
+        <ul class="">
+          <li><a href="{{ path('iirt_announcement') }}">annonces</a></li>
+          <li><a href="{{ path('iirt_message_homepage') }}">messages</a></li>
+          <li><a href="{{ path('iirt_user_homepage') }}">gestion éditeur</a></li>
+          <li><a href="{{ path('iirt_user_homepage') }}">gestion abonné</a></li>
+        </ul>
+      {% endif %}
       <h2>Fresh <span>News</span></h2>
       <ul class="news">
         <li><strong>June 30, 2010</strong>
@@ -138,4 +148,7 @@
 <!--<script type="text/javascript"> Cufon.now(); </script>
  END PAGE SOURCE -->
 </body>
+{# else #}
+    
+{# endif #}
 </html>

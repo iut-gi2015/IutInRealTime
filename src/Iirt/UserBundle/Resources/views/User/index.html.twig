@@ -2,9 +2,15 @@
 
 {% block contenu %}
     
-       <h2>liste des utilisateurs </h2>
-        <ul class="list">
-          
-        </ul>
+    <h2>liste des utilisateurs </h2>
 
-  {% endblock %}
+    {% for membre in user %}
+    <li> {{ membre.firstname }} {{membre.id}} 
+    {% if(app.session.get('matricule')) %}
+        <a href="{{ path('iirt_message_ajout',{'destinataire': membre.id}) }}" class="m2" > new message</a> </li>
+    {% else %}
+        <a href="{{ path('iirt_message_ajout',{'id_student': membre.id,'id_teacher': app.session.get('id')}) }}" class="m2" > new message</a> </li>
+    {% endif %}
+    {% endfor %}
+    
+ {% endblock %}

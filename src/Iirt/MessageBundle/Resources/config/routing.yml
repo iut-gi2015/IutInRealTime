@@ -3,9 +3,9 @@ iirt_message_homepage:
     defaults: { _controller: IirtMessageBundle:message:index }
     
 iirt_message_ajout:
-    path:     /message/ajouter/{id_teacher, id_student}
+    path:     /message/ajouter/{destinataire}
     defaults: { _controller: IirtMessageBundle:message:ajouter }
 
-iirt_message_new:
+iirt_message_afficherEns:
     path:     /message/new
-    defaults: { _controller: IirtMessageBundle:message:new }
+    defaults: { _controller: IirtMessageBundle:message:afficherEns }

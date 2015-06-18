@@ -1,0 +1,12 @@
+{% extends "IirtMessageBundle::layout.html.twig" %}
+
+{% block contenu %}
+    
+    {% for membre in user %}
+    <li> {{ membre.firstname }} {{membre.id}} 
+        <a href="{{ path('iirt_message_ajout',{'destinataire': membre.id}) }}" class="m2" > new message</a> 
+    </li>
+    
+    {% endfor %}
+
+ {% endblock %}

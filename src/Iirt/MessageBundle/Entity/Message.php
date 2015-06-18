@@ -13,10 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Message
 {
-    /**
+    /*
      * @ORM\OneToOne(targetEntity="Iirt\MessageBundle\Entity\MessageFile", cascade={"persist"})
-     */
-    private $message_file;
+     * @ORM\JoinColumn(nullable=true)
+     *
+    private $message_file;*/
     
     /**
      * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Student", cascade={"persist"})
@@ -70,7 +71,7 @@ class Message
     
     public function __construct()
     {
-        $this->date = new \Datetime;
+        $this->date = new \DateTime;
     }
 
     /**
@@ -175,28 +176,28 @@ class Message
         return $this->read_or_no;
     }
 
-    /**
+    /*
      * Set message_file
      *
      * @param \Iirt\MessageBundle\Entity\MessageFile $messageFile
      * @return Message
-     */
+    
     public function setMessageFile(\Iirt\MessageBundle\Entity\MessageFile $messageFile = null)
     {
         $this->message_file = $messageFile;
 
         return $this;
     }
-
-    /**
+ */
+    /*
      * Get message_file
      *
      * @return \Iirt\MessageBundle\Entity\MessageFile 
-     */
+     
     public function getMessageFile()
     {
         return $this->message_file;
-    }
+    }*/
 
     /**
      * Set student

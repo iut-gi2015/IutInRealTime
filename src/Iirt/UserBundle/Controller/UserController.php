@@ -20,7 +20,15 @@ class UserController extends Controller
     
     public function indexAction()
     {
-        return $this->render('IirtUserBundle:User:index.html.twig');    
+        $session = $this->get('session');
+        
+        if($session->get('matricule')){
+            $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Teacher');
+        }else{
+            $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Student');
+        }
+        $user = $repository->findAll();
+        return $this->render('IirtUserBundle:User:index.html.twig',array('user' => $user));    
     }
     
     public function ajouterEtudAction()
@@ -32,7 +40,7 @@ class UserController extends Controller
         $student->setConnected(FALSE);
         $student->setInscriptDate(new \DateTime());
 
-        $role = $this->chercherUser(1, 'IirtUserBundle:Role');
+        $role = $this->chercherEntity(1, 'IirtUserBundle:Role');
         $student->addRole($role);
 
         $validator = $this->get('validator');
@@ -48,7 +56,7 @@ class UserController extends Controller
                 $em->persist($student);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('iirt_user_homepage'));
+                return $this->redirect($this->generateUrl('iirt_announcement'));
             }
 
 
@@ -78,17 +86,18 @@ class UserController extends Controller
                     $em->persist($teacher);
                     $em->flush();
 
-                    return $this->redirect($this->generateUrl('iirt_user_homepage'));
+                    return $this->redirect($this->generateUrl('iirt_announcement'));
                 }
             }
             return $this->render('IirtUserBundle:User:ajouter.html.twig',array(
-            'form' =>   $form->createView(),
+            'form' =>   $form->createView()
             ));
         }
         
         
     
-    
+    // les fonctions afficher etudiant et enseignant du bundle user sont utilisées pour
+        // gérer les utilisateurs
     public function afficherEtudAction($id)
     {
         $user = $this->chercherUser($id,'IirtUserBundle:Student');
@@ -203,42 +212,52 @@ class UserController extends Controller
         $user_pass = $request->request->get('password');
         $type = $request->request->get('type');
         
+        $temoin ="rien ne passe";
         if($request->getMethod() == 'POST')
         {
-            if($type === 1)
+            if($type == 1)
             {
                 $user = $this->chercherUser($user_id, 'IirtUserBundle:Student');
-                if( $user !== null )
-                {
-                    $session->start();
-                    $session->set('name',$user->getFirstname());
-                    $user->setConnected(true);
-                    return $this->render('IirtUserBundle:User:index.html.twig',array('user'=> $user));
+                if( $user == null )
+                {   
+                    $temoin ="ça ne passe pas";
+                    throw $this->createNotFoundException('Etudiant avec matricule '.$user_id.' inexistant.');
                 }
-                else
+                foreach($user as $element)
                 {
-                    throw $this->createNotFoundException('Etudiant avec matricule '.$id.' inexistant.');
+                    // Récupération du service
+                    $session = $this->get('session');
+                    $session->set('id',$element->getId());
+                    $session->set('path',$element->getPath());
+                    $session->set('name',$element->getFirstname());
+                    $session->set('matricule',$element->getMatricule());
+                    $element->setConnected(true);
                 }
+                //return $this->render('IirtAnnouncementBundle:Announce:index.html.twig',array('user'=> $user));
+                
             }
-            if($type === 2)
+            if($type == 2)
             {
-                $session->start();
-                $session->set('name',$user->getFirstname());
-                $user = $this->chercherUser($user_id, 'IirtUserBundle:Teacher');
-                if( $user !== null )
-                {
-                    $user->setConnected(true);
-                    return $this->render('IirtUserBundle:User:index.html.twig',array('user'=> $user));
+                $user = $this->chercherTeacher($user_id, 'IirtUserBundle:Teacher');
+                if( $user == null )
+                {     
+                    throw $this->createNotFoundException('Enseignant avec identifiant telephonique '.$user_id.' inexistant.');
                 }
-                else
+                foreach($user as $element)
                 {
-                    throw $this->createNotFoundException('Enseignant avec identifiant telephonique '.$id.' inexistant.');
+                    // Récupération du service
+                    $session = $this->get('session');
+                    $session->set('id',$element->getId());
+                    $session->set('name',$element->getFirstname());
+                    $element->setConnected(true);
                 }
+                //return $this->render('IirtAnnouncementBundle:Announce:index.html.twig',array('user'=> $user));
+
             }
         }
-        
-        
-            return $this->redirect($this->generateUrl('iirt_user_homepage'));
+        //return $this->render('IirtUserBundle:User:index.html.twig',array('user' => $user, 'temoin'=> $temoin));
+        return $this->redirect($this->generateUrl('iirt_announcement'));        
+           // return $this->redirect($this->generateUrl('iirt_announcement'));
    
         
         
@@ -249,20 +268,36 @@ class UserController extends Controller
         $request = $this->get('request');
         $session = $request->getSession();
         $session->clear();
-        $user->setConnected(false);
-        $this->render('IirtUserBundle:User:index.html.twig',array('message'=> 'Vous etes déconnecté(e)'));
+        //$user->setConnected(false);
+        //$this->render('IirtUserBundle:User:index.html.twig',array('message'=> 'Vous etes déconnecté(e)'));
+        return $this->redirect($this->generateUrl('iirt_announcement'));
+        
     }
     
-    public function chercherUser($id,$rep)
+    public function chercherEntity($id,$rep)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository($rep);
         $user = $repository->find($id);
         return $user;        
     }
     
+    public function chercherUser($id,$rep)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository($rep);
+        $user = $repository->findBy(array('matricule' => $id));
+        return $user;        
+    }
+    
+    public function chercherTeacher($id,$rep)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository($rep);
+        $user = $repository->findBy(array('firstname' => $id));
+        return $user;        
+    }
+    
     private function checkUser($id,$user)
     {
-         if($user === null)
+        if($user === null)
         {
             throw $this->createNotFoundException('Utilisateur avec id='.$id.' inexistant.');
         }

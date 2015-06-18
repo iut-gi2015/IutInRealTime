@@ -3,8 +3,31 @@
 {% block contenu %}
     
        <h2>liste des messages </h2>
-        <ul class="list">
-          
-        </ul>
+       <table >
+            <tr>
+                <th class="chapitre">  </th>
+                <th class="titre"> nom </th>
+                <th class="titre"> titre </th>
+                <th class="contenu"> contenu </th>
+                <th class="date"> date </th>
+            </tr>
+            {% for message in liste %}
+            <tr >
+                <td >
+                    <input style="width: 25px;" type="checkbox" />
+                </td >
+                
+                    <td >{{ message.title }}</td >
+                    <td >{{ message.title }}</td >
+                    <td >
+                        <a href="{{ path('iirt_message_ajout',{'destinataire': 1}) }}" >
+                            {{ message.content }}
+                        </a>
+                    </td >
+                    <td >{{ message.date|date('d/m/Y') }}</td >
+                
+            </tr >
+            {% endfor %}
+        </table >
 
   {% endblock %}

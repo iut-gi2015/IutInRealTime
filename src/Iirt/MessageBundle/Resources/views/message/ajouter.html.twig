@@ -1,7 +1,8 @@
 {% extends "IirtMessageBundle::layout.html.twig" %}
 
 {% block contenu %}
-    <h3>Formulaire d'article</h3>
+    {{ app.session.get('name') }}
+    <h3>Formulaire de message</h3>
     <div class="well">
     <form  method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}

@@ -19,7 +19,11 @@ class TeacherType extends AbstractType
             ->add('lastname','text')
             ->add('phoneNumber','number')
             ->add('password','password')
-            ->add('department')
+            //->add('department')
+            ->add('department', 'entity', array(
+                'class' => 'IirtUserBundle:Department',
+                'property' => 'name'
+            ))
             ->add('email','email')
             //->add('inscriptDate','date')
             //->add('connected')

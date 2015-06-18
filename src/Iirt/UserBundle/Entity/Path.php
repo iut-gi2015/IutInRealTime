@@ -27,6 +27,11 @@ class Path
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Department", cascade={"persist"})
+     */
+    private $department;
 
 
     /**
@@ -61,4 +66,28 @@ class Path
     {
         return $this->name;
     }
+
+    /**
+     * Set department
+     *
+     * @param string $department
+     * @return Teacher
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return string 
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
 }

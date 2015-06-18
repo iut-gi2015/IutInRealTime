@@ -17,11 +17,8 @@ class MessageType extends AbstractType
         $builder
             ->add('title','text')
             ->add('content','textarea')
-            ->add('date','date')
-            ->add('read_or_no')
-            ->add('message_file', new MessageFileType(), array('required' => false))
-            ->add('student','integer')
-            ->add('teacher','integer')
+            //->add('date','date')
+            //->add('message_file', new MessageFileType(), array('required' => false))
         ;
     }
     
