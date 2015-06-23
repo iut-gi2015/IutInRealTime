@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-{# if(app.session.get('name') OR app.session.get('connect')) #}
+{# if app.session.get('name')is empty #}
 <head>
 <title>{% block title %}
 
@@ -148,7 +148,7 @@
 <!--<script type="text/javascript"> Cufon.now(); </script>
  END PAGE SOURCE -->
 </body>
-{# else #}
-    
-{# endif #}
+{# else 
+    {% render "IirtAnnouncementBundle:Announcement:index" %}
+ endif #}
 </html>

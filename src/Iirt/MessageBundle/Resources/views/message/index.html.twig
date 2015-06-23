@@ -20,7 +20,7 @@
                     <td >{{ message.title }}</td >
                     <td >{{ message.title }}</td >
                     <td >
-                        <a href="{{ path('iirt_message_ajout',{'destinataire': 1}) }}" >
+                        <a href="{{ path('iirt_message_answer',{'messageId': message.id}) }}" >
                             {{ message.content }}
                         </a>
                     </td >

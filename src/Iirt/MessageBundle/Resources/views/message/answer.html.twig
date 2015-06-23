@@ -1,0 +1,24 @@
+{% extends "IirtMessageBundle::layout.html.twig" %}
+
+{% block contenu %}
+    <div>
+        <h3>{{ message.title }}</h3>
+         {{ message.date|date('d/m/Y') }}
+        <p>{{ message.content }}</p>
+    </div>
+    <div>
+        <h3> reponse</h3>
+    {% for reponse in liste_reponse %}
+        {{ reponse.author }} {{ reponse.date|date('d/m/Y') }}
+        <p> {{ reponse.reponse }}</p>
+    {% endfor %}
+    </div>
+    <div class="col-lg-8" >
+            <form action="{{ path('iirt_message_answer',{'messageId': message.id}) }}" method="post" >
+                <div class="form-group">
+                    <textarea type="text" id="" name="reponse" class="form-control"></textarea>
+                </div>
+                <input class="btn btn-primary pullright" type="submit" value="répondre" />
+            </form>
+	</div>
+ {% endblock %}

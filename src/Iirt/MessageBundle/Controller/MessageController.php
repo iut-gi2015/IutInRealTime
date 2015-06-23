@@ -6,6 +6,7 @@ use Iirt\MessageBundle\Entity\Message;
 use Iirt\MessageBundle\Entity\MessageFile;
 use Iirt\MessageBundle\Form\MessageType;
 use Iirt\MessageBundle\Form\MessageFileType;
+use Iirt\MessageBundle\Entity\Answer;
 use Iirt\UserBundle\Entity\Student;
 use Iirt\UserBundle\Entity\Teacher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -91,11 +92,40 @@ class MessageController extends Controller
         return $this->render('IirtMessageBundle:message:ajouter.html.twig',
         array('form' => $form->createView()));
     }
+    
+    public function answerAction($messageId){
+        $answer = new Answer();
+        //$message = new Message();
+        $session = $this->get('session');
+        $request = $this->get('request');
+        $reponse = $request->request->get('reponse');
+        $message = $this->chercherUser($messageId, 'IirtMessageBundle:Message');
+        //$liste_reponse = $this->chercherUser($messageId, 'IirtMessageBundle:Answer');
+        $repository = $this->getDoctrine()->getManager()->getRepository('IirtMessageBundle:Answer');
+        $liste_reponse = $repository->findBy(array('message' => $messageId));
+        
+        foreach ( $message as $element){
+           $liste = $element;
+        }
+        if($request->getMethod() == 'POST')
+        {
+            $answer->setMessage($liste);
+            $answer->setReponse($reponse);
+            $answer->setAuthor($session->get('name'));
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($answer);
+            $em->flush();
+            return $this->redirect( $this->generateUrl('iirt_message_answer',array('messageId' => $messageId)));
+        }
+        
+        return $this->render('IirtMessageBundle:message:answer.html.twig',
+        array('message' => $liste, 'liste_reponse' => $liste_reponse));
+    }
+    
     // les fonction afficher student et teacher serve ici à envoyer les messages à l'un comme à l'autre
     public function afficherEtudAction($id)
     {
         $user = $this->chercherUser($id,'IirtUserBundle:Student');
-       
         return $this->render('IirtUserBundle:User:afficher.html.twig',array('user'=> $user));    
     }
     

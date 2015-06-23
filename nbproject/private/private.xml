@@ -5,13 +5,9 @@
         <group>
             <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/views/message/index.html.twig</file>
             <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Controller/MessageController.php</file>
-            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/AnnouncementBundle/Resources/config/routing.yml</file>
-            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/AnnouncementBundle/Controller/AnnouncementController.php</file>
-            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Form/MessageType.php</file>
             <file>file:/C:/wamp/www/IutInRealTime/app/Resources/views/layout.html.twig</file>
-            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/views/message/newMessage.html.twig</file>
-            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/UserBundle/Resources/views/User/ajouter.html.twig</file>
-            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/UserBundle/Resources/views/User/index.html.twig</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/config/routing.yml</file>
+            <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/MessageBundle/Resources/views/message/answer.html.twig</file>
             <file>file:/C:/wamp/www/IutInRealTime/src/Iirt/UserBundle/Controller/UserController.php</file>
         </group>
     </open-files>

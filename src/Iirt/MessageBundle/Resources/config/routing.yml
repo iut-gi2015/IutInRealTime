@@ -1,11 +1,15 @@
 iirt_message_homepage:
     path:     /message/index
-    defaults: { _controller: IirtMessageBundle:message:index }
+    defaults: { _controller: IirtMessageBundle:Message:index }
     
 iirt_message_ajout:
     path:     /message/ajouter/{destinataire}
-    defaults: { _controller: IirtMessageBundle:message:ajouter }
+    defaults: { _controller: IirtMessageBundle:Message:ajouter }
+   
+iirt_message_answer:
+    path:     /message/answer/{messageId}
+    defaults: { _controller: IirtMessageBundle:Message:answer }
 
 iirt_message_afficherEns:
     path:     /message/new
-    defaults: { _controller: IirtMessageBundle:message:afficherEns }
+    defaults: { _controller: IirtMessageBundle:Message:afficherEns }
