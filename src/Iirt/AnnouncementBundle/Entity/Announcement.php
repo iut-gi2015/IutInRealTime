@@ -15,11 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Announcement
 {
     /**
-     * @ORM\OneToOne(targetEntity="Iirt\AnnouncementBundle\Entity\AnnouncementFile", cascade={"persist"})
-     */
-    private $announcement_file;
-        
-    /**
      * @ORM\ManyToOne(targetEntity="Iirt\UserBundle\Entity\Student", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -136,29 +131,6 @@ class Announcement
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set announcement_file
-     *
-     * @param \Iirt\AnnouncementBundle\Entity\AnnouncementFile $announcementFile
-     * @return Announcement
-     */
-    public function setAnnouncementFile(\Iirt\AnnouncementBundle\Entity\AnnouncementFile $announcementFile = null)
-    {
-        $this->announcement_file = $announcementFile;
-
-        return $this;
-    }
-
-    /**
-     * Get announcement_file
-     *
-     * @return \Iirt\AnnouncementBundle\Entity\AnnouncementFile 
-     */
-    public function getAnnouncementFile()
-    {
-        return $this->announcement_file;
     }
 
     /**

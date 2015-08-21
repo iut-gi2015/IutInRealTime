@@ -3,31 +3,25 @@
 {% block contenu %}
     
        <h2>liste des messages </h2>
-       <table >
-            <tr>
-                <th class="chapitre">  </th>
-                <th class="titre"> nom </th>
-                <th class="titre"> titre </th>
-                <th class="contenu"> contenu </th>
-                <th class="date"> date </th>
-            </tr>
+       
+<table class="table table-bordered table-striped table-condensed">
+    
+<tbody>
             {% for message in liste %}
             <tr >
+                <td >{{ message.title }}</td >
                 <td >
-                    <input style="width: 25px;" type="checkbox" />
+                    <a href="{{ path('iirt_message_answer',{'messageId': message.id}) }}" >
+                        {{ message.content }}
+                    </a>
                 </td >
-                
-                    <td >{{ message.title }}</td >
-                    <td >{{ message.title }}</td >
-                    <td >
-                        <a href="{{ path('iirt_message_answer',{'messageId': message.id}) }}" >
-                            {{ message.content }}
-                        </a>
-                    </td >
-                    <td >{{ message.date|date('d/m/Y') }}</td >
-                
+                <td >{{ message.date|date('d/m/Y') }}</td >
+                <td ><a class="btn btn-default" href="{{ path('iirt_message_answer',{'messageId': message.id}) }}" >
+                        supprimer
+                    </a></td >
             </tr >
             {% endfor %}
+            </tbody>
         </table >
 
   {% endblock %}

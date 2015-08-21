@@ -13,15 +13,9 @@
 {% endblock %} 
        
 {% block section %}
-    
-      <nav>
-       {# ici le menu pour gerer les annonces mais ne sera visible que par les utilisateurs ayant le droit de
-        les modifiers #}
-        <ul>
-          <li class="current"><a href="" class="m1">liste des annonces</a></li>
-          <li><a href="" class="m2">rediger un annonce</a></li>
-        </ul> 
-      </nav>
+    {%if app.session.get('path') %}
+        {{ render(controller('IirtUserBundle:User:menuConnect',{menu: 4})) }}
+    {% endif %}   
       <div class="row">
         {% block contenu %}
             

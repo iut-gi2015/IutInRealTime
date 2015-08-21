@@ -3,12 +3,34 @@
 {% extends "IirtUserBundle::layout.html.twig" %}
 
 {% block contenu %}
-<h3>Formulaire Utilisateur</h3>
-<div class="well">
-    <form method="post" {{ form_enctype(user) }}>
-        {{ form_widget(user) }}
-         <input type="submit" class="btn btn-primary" />
-    </form>
-</div>
 
+<table class="table table-bordered table-striped table-condensed">
+    
+        <caption>
+<h4>Les menaces pour les tigres</h4>
+</caption>
+<thead>
+<tr>
+<th>nom </th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+        {% for user in users %}
+            <tr>
+        <td>{{ user.firstname }}</td>    
+        <td>
+            {% if role == 5 %}
+            <a class="btn btn-default" href="{{ path('iirt_user_role',{'id':  user.matricule}) }}" > ajouter un rôle </a>
+            <a class="btn btn-default" href="" > supprimer un rôle </a>
+            {% elseif role == 2 %}   
+                <a class="btn btn-default" href="{{ path('iirt_user_editeur',{'id':  user.matricule}) }}" > ajouter comme editeur </a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+         
+    </tbody>
+        
+    </table>        
 {% endblock %}

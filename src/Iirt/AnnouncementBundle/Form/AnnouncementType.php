@@ -19,7 +19,7 @@ class AnnouncementType extends AbstractType
             ->add('title','text')
             ->add('content','textarea')
             //->add('date','date')
-            ->add('announcement_file',new AnnouncementFileType())
+            //->add('announcement_file',new AnnouncementFileType())
             //->add('student')
         ;
     }

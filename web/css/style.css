@@ -120,6 +120,35 @@ aside .new {
 	text-decoration:none;
 	font-weight:bold;
 }
+
+.categories {
+	padding-bottom:37px;
+}
+.categories li {
+	font-weight:bold;
+	font-size:.857em;
+	padding-bottom:8px;
+	margin-bottom:6px;
+	background:url(../images/divider1.gif) repeat-x left bottom;
+}
+.categories li.last {
+	background:none;
+	padding:0;
+	margin:0;
+}
+.categories li span {
+	display:block;
+	padding-left:15px;
+	height:1%;
+	background:url(../images/marker.gif) no-repeat left 5px;
+}
+.categories li a {
+	text-decoration:none;
+	color:#008cc4;
+}
+.categories li a:hover {
+	color:#ff7b01;
+}
  header nav {
 	position:relative;
 	left:0;

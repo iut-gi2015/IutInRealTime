@@ -5,12 +5,9 @@
 
 {% block section %}
     
-      <nav>
-        <ul>
-          <li class="current"><a href="" class="m1">liste des messages</a></li>
-          <li><a href="" class="m2">rediger un message</a></li>
-        </ul>
-      </nav>
+        {% if app.session.get('department') or app.session.get('matricule') %}
+        {{ render(controller('IirtUserBundle:User:menuConnect',{menu: 2})) }}
+        {% endif %}
       <div class="row">
         {% block contenu %}
             

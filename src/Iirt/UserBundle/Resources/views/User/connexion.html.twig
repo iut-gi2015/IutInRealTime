@@ -1,0 +1,67 @@
+{# src/Iirt/UserBundle/Resources/views/User/ajouter.html.twig #}
+
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+    {% if menu == 1 %}
+        
+        <ul class="categories" >
+            
+        {% for category in user.roles %}
+          {% if app.session.get('department') or category.id == 4 %} 
+            
+          <li><a href="{{ path('iirt_message_homepage') }}">messages</a></li>
+        
+          {% elseif category.id == 3  %}
+          <li><a href="{{ path('iirt_announcement_add') }}">annonces</a></li>
+          <li><a href="{{ path('iirt_announcement_setMeeting') }}">réunion</a></li>
+          {% elseif category.id == 2 %}
+          <li><a href="{{ path('iirt_user_list_student',{'role': 2}) }}">gestion des éditeurs</a></li>
+          {% elseif category.id == 5 %}
+          <li><a href="{{ path('iirt_user_list_student',{'role': 5}) }}">gestion des rôles</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+    {% elseif menu == 2 %}
+    <nav class="navbar navbar-default" >
+        <ul class="nav navbar-nav">   
+            <li><a href="" class="m2">liste des délégués </a></li>   
+        {% for category in user.roles %}
+          {% if category.id == 3 or category.id == 2 %}
+            <li><a href="{{ path('iirt_user_list_student',{'role': 2}) }}">liste des etudiants</a></li>
+        {% elseif category.id == 5 %}
+            <li><a href="{{ path('iirt_user_list_student',{'role': 5}) }}">liste des etudiants</a></li>
+            <li><a href="{{ path('iirt_user_list_student',{'role': 5}) }}">président AE</a></li>
+            <li><a href="{{ path('iirt_user_add_teacher') }}">ajuter un enseignant</a></li>
+        {% endif %}
+        {% endfor %}
+        </ul>
+    </nav>
+    {% elseif menu == 3 %}
+    <nav class="navbar navbar-default" >
+        <ul class="nav navbar-nav">   
+           <li class="current">
+              <a href="{{ path('iirt_message_homepage') }}" class="m2" >liste des messages</a>
+          </li>
+          <li>
+            {%if app.session.get('matricule')  %}
+                <a href="{{ path('iirt_message_afficherEns') }}" class="m2" > nouveau message </a>
+            {% else %}
+                <a href="{{ path('iirt_message_afficherEtud') }}" class="m2" > nouveau message </a>
+            {% endif %} 
+          </li>
+        </ul>
+    </nav>
+    {% elseif menu == 4 %}
+     {% for category in user.roles %}
+          {% if category.id == 3 or category.id == 2 %}
+      <nav class="navbar navbar-default" >
+       {# ici le menu pour gerer les annonces mais ne sera visible que par les utilisateurs ayant le droit de
+        les modifiers #}
+        <ul class="nav navbar-nav" >
+          <li class="current" class="m2" ><a href="{{ path('iirt_announcement') }}" class="m1">liste des annonces</a></li>
+          <li class="m2" ><a href="{{ path('iirt_announcement_add') }}" class="m2">rediger un annonce</a></li>
+        </ul> 
+      </nav>
+          {% endif %}
+        {% endfor %}
+{% endif %}

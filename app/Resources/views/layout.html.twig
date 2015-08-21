@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="all" />
+
+    <link rel="stylesheet" href="{{ asset('css/demo.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/jquery.ui.core.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/jquery.ui.widget.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/jquery.ui.datepicker.css') }}" type="text/css" media="all" />
+
 {% endblock %}
 </head>
 <body id="page1">
@@ -36,24 +42,16 @@
 	  <h1><a href="#">Student's site</a></h1>
 	  </div>
 	  <div class="col-lg-5">
-            {%if app.session.get('name')  %}
-                {{ app.session.get('name') }} <a class="inscript" href="{{ path('iirt_user_logout') }}"> Deconnexion </a>
-            {% else %}
+            {%if app.session.get('path') %}
+              <a class="inscript" href="{{ path('iirt_user_logout') }}"> Deconnexion </a>  <span class="inscript"> {{ app.session.get('name') }}</span> 
+            {% elseif  app.session.get('department') %}
+                <span class="inscript"> {{ app.session.get('name') }}{{ app.session.get('department').name }} </span>  <a class="inscript" href="{{ path('iirt_user_logout') }}"> Deconnexion </a>
+            {% else  %}
 	  <div  id="">
 		
 	<div  >
             <a class="inscript" href="{{ path('iirt_user_add_student') }}"> Inscription </a>
-            <!--<div id="inscription" class="col-lg-8"  hidden >
-            <form action="" method="post" id="form_connect">
-                
-                <div class="form-group">
-                <input type="radio" id="enseignant" name="type" value="2" />Enseignant
-                <input type="radio" id="etudiant" name="type" value="1" />Etudiant
-                </div>
-                <div class="form-group">
-                <input class="btn btn-primary pullright" type="submit" value="Inscription" />
-                </div>
-            </form>!-->
+           
             </div>
         
             <a class="trigger" href="#"> Connexion </a>
@@ -68,8 +66,8 @@
                     </div>
                 <div class="form-group">
                     <strong>En tant que:</strong><br>
-                    <input type="radio" id="enseignant" name="type" value="2" />Enseignant
                     <input type="radio" id="etudiant" name="type" value="1" />Etudiant
+                    <input type="radio" id="enseignant" name="type" value="2" />Enseignant
                 </div>
 		<div class="form-group">
                     <label for="souvenir" >
@@ -90,16 +88,12 @@
   </header>
   <div class="row">
     <aside class="col-lg-3">
-       {% if(app.session.get('matricule')) %}
-       {#ici on appelle directement le controleur dans l'aside #}
+        
+        {% if app.session.get('department') or app.session.get('matricule') %}
         <h2>menu <span>utilisateur</span></h2>
-        <ul class="">
-          <li><a href="{{ path('iirt_announcement') }}">annonces</a></li>
-          <li><a href="{{ path('iirt_message_homepage') }}">messages</a></li>
-          <li><a href="{{ path('iirt_user_homepage') }}">gestion éditeur</a></li>
-          <li><a href="{{ path('iirt_user_homepage') }}">gestion abonné</a></li>
-        </ul>
-      {% endif %}
+        {{ render(controller('IirtUserBundle:User:menuConnect',{menu: 1})) }}
+            
+        {% endif %}
       <h2>Fresh <span>News</span></h2>
       <ul class="news">
         <li><strong>June 30, 2010</strong>
@@ -143,6 +137,27 @@
             e.preventDefault();
             $("#inscription").slideToggle();
 			});*/
+    
+    $(document).ready(function (e) {
+	$("#uploadForm").on('submit',(function(e) {
+		e.preventDefault();
+		$.ajax({
+        	url: "iirt_announcement_add_image",
+			type: "POST",
+			data:  new FormData(this),
+			contentType: false,
+    	    cache: false,
+			processData:false,
+			success: function(data)
+		    {
+			$("#targetLayer").html(data);
+		    },
+		  	error: function() 
+	    	{
+	    	} 	        
+	   });
+	}));
+});
 </script>
 {% endblock %}
 <!--<script type="text/javascript"> Cufon.now(); </script>

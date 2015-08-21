@@ -1,0 +1,14 @@
+{# src/Iirt/UserBundle/Resources/views/User/ajouter.html.twig #}
+
+{% extends "IirtUserBundle::layout.html.twig" %}
+
+{% block contenu %}
+
+
+    {% for user in users %}
+        <a href="{{ path('iirt_user_role',{'id':  user.matricule}) }}" >
+            {{ user.firstname }}
+        </a>
+    {% endfor %}
+            
+{% endblock %}

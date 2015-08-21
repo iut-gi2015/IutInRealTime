@@ -39,10 +39,17 @@ class MessageController extends Controller
     
     public function newAction()
     {
-        
-        $repository = $this->getDoctrine()
-                        ->getManager()
-                        ->getRepository('IirtUserBundle:Teacher');
+        $session = $this->get('session');
+        // on vérifie s'il s'agit d'un étudiant ou d'un enseignent
+        if($session->get('matricule')){
+            $repository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('IirtUserBundle:Teacher');
+        }else{
+            $repository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('IirtUserBundle:Teacher');
+        }
         $liste_enseignent = $repository->findAll();
         
         return $this->render('IirtMessageBundle:message:newMessage.html.twig', array('liste' => $liste_enseignent));
@@ -70,7 +77,6 @@ class MessageController extends Controller
             $form->bind($request);
             if( $form->isValid() )
             {
-                
                 $student = $this->chercherUser($id_student, 'IirtUserBundle:Student');
                 $teacher = $this->chercherUser($id_teacher, 'IirtUserBundle:Teacher');
                 // Récupération de l'étudiant
@@ -123,29 +129,33 @@ class MessageController extends Controller
     }
     
     // les fonction afficher student et teacher serve ici à envoyer les messages à l'un comme à l'autre
-    public function afficherEtudAction($id)
+    public function afficherEtudAction()
     {
-        $user = $this->chercherUser($id,'IirtUserBundle:Student');
-        return $this->render('IirtUserBundle:User:afficher.html.twig',array('user'=> $user));    
+        $session = $this->get('session');
+        $user = $this->chercherUserMessage('path',$session->get('department'),'IirtUserBundle:Student', 'IirtUserBundle:Path');
+        
+        return $this->render('IirtMessageBundle:Message:newMessage.html.twig',array('user'=> $user));     
     }
     
     public function afficherEnsAction()
     {
         $session = $this->get('session');
-        //$filiere = $session->get('path');
-        $user = $this->chercherUserMessage($session->get('path'),'IirtUserBundle:Teacher');
+        $user = $this->chercherUserMessage('department', $session->get('path'), 'IirtUserBundle:Teacher', 'IirtUserBundle:Path');
+        
+       // $user = $repository->findBy(array('department' => $filiereInst));
+        
         return $this->render('IirtMessageBundle:Message:newMessage.html.twig',array('user'=> $user));    
     }
     
-    public function chercherUserMessage($filiere,$rep)
+    public function chercherUserMessage($sink,$filiere,$rep,$link)
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Path');
-        $filiereInst = $repository->findBy(array('id' => $filiere));
+        $repository = $this->getDoctrine()->getManager()->getRepository($link);
+        $filiereInst = $repository->findBy(array('department' => $filiere));
         $repository = $this->getDoctrine()->getManager()->getRepository($rep);
         //$query = $em->createQuery('SELECT t FROM IirtUserBundle:Teacher t WHERE t.department = :name');
         //$query->setParameter('departement', $filiere);
         //$users = $query->getResult(); // array of ForumUser objects
-        $user = $repository->findBy(array('department' => $filiereInst));
+        $user = $repository->findBy(array($sink => $filiereInst));
         return $user;        
     }
     

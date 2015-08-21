@@ -13,7 +13,7 @@ use Iirt\UserBundle\Form\TeacherType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 
-
+define("ROLE", "IirtUserBundle:Role");
 
 class UserController extends Controller
 {
@@ -58,8 +58,6 @@ class UserController extends Controller
 
                 return $this->redirect($this->generateUrl('iirt_announcement'));
             }
-
-
         }
 
         return $this->render('IirtUserBundle:User:ajouter.html.twig',array(
@@ -98,6 +96,52 @@ class UserController extends Controller
     
     // les fonctions afficher etudiant et enseignant du bundle user sont utilisées pour
         // gérer les utilisateurs
+    public function listeEtudAction($role)
+    {
+        //$user = $this->chercherUser($id,'IirtUserBundle:Student');
+       
+        $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Student');
+        $users = $repository->findAll();
+        return $this->render('IirtUserBundle:User:afficher.html.twig',array('users'=> $users, 'role' => $role));    
+    }
+    
+    public function modifierRoleAction($id)
+    {
+        $request = $this->get('request');
+        
+        $user = $this->chercherUserUnique($id, 'IirtUserBundle:Student');
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Role');
+        $roles = $repository->findAll();
+        // recupération du formulaire
+        $user_role = $request->request->get('role');
+        $role = $this->chercherRole($user_role);
+        
+        if($request->getMethod() == 'POST')
+        {
+            $user->addRole($role);
+            $em = $this->getDoctrine() -> getEntityManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('iirt_user_list_student',array("role" => 5)));  
+        }
+        return $this->render('IirtUserBundle:User:role.html.twig', array('users'=>$user, 'roles'=>$roles));
+    }
+    
+    public function ajoutEditeurAction($id)
+    {
+        $user = $this->chercherUserUnique($id, 'IirtUserBundle:Student');
+        $role = $this->chercherRole(3);
+        
+        $user->addRole($role);
+        $em = $this->getDoctrine() -> getEntityManager();
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('iirt_user_list_student',array("role" => 2)));  
+    }
+    
     public function afficherEtudAction($id)
     {
         $user = $this->chercherUser($id,'IirtUserBundle:Student');
@@ -141,7 +185,7 @@ class UserController extends Controller
         
         return $this->render('IirtUserBundle:User:modifier.html.twig',array('form'=>$form->createView()));
     }
-        
+    
     public function modifierEnsAction($id)    
     {    
         
@@ -151,7 +195,6 @@ class UserController extends Controller
 
         $user = $this->chercherUser($id, 'IirtUserBundle:Teacher');
         $form = $this->createForm(new TeacherType,$user);
-        $request = $this->get('request');
         if($request->getMethod() == 'POST')
         {            
             $form->bind($request);
@@ -164,8 +207,6 @@ class UserController extends Controller
                 return $this->render('IirtUserBundle:User:modifier.html.twig',array('form'=>$form->createView()));
             }
         }
-        
-        
         return $this->render('IirtUserBundle:User:modifier.html.twig',array('form'=>$form->createView()));
     }
     
@@ -215,24 +256,30 @@ class UserController extends Controller
         $temoin ="rien ne passe";
         if($request->getMethod() == 'POST')
         {
+            // on va creer une fonctionne booleene qui prendra en parametre le matricule et l'id du role et retournera
+            // si l'utilisateur a le role sinon faux.
             if($type == 1)
             {
-                $user = $this->chercherUser($user_id, 'IirtUserBundle:Student');
+                $user = $this->chercherUserUnique($user_id, 'IirtUserBundle:Student');
                 if( $user == null )
                 {   
                     $temoin ="ça ne passe pas";
                     throw $this->createNotFoundException('Etudiant avec matricule '.$user_id.' inexistant.');
                 }
-                foreach($user as $element)
+                $session = $this->get('session');
+                $session->set('id',$user->getId());
+                $session->set('path',$user->getPath());
+                $session->set('name',$user->getFirstname());
+                $session->set('matricule',$user->getMatricule());
+                //$session->set('user',$element);
+                foreach($user->getRoles() as $elemrol)
                 {
                     // Récupération du service
-                    $session = $this->get('session');
-                    $session->set('id',$element->getId());
-                    $session->set('path',$element->getPath());
-                    $session->set('name',$element->getFirstname());
-                    $session->set('matricule',$element->getMatricule());
-                    $element->setConnected(true);
+                    $session->set('role',$elemrol->getName());
                 }
+                $user->setConnected(true);
+                
+                
                 //return $this->render('IirtAnnouncementBundle:Announce:index.html.twig',array('user'=> $user));
                 
             }
@@ -249,18 +296,30 @@ class UserController extends Controller
                     $session = $this->get('session');
                     $session->set('id',$element->getId());
                     $session->set('name',$element->getFirstname());
+                    $session->set('department',$element->getDepartment());
                     $element->setConnected(true);
                 }
                 //return $this->render('IirtAnnouncementBundle:Announce:index.html.twig',array('user'=> $user));
-
+                //return $this->redirect($this->generateUrl('iirt_announcement'));
             }
         }
         //return $this->render('IirtUserBundle:User:index.html.twig',array('user' => $user, 'temoin'=> $temoin));
         return $this->redirect($this->generateUrl('iirt_announcement'));        
            // return $this->redirect($this->generateUrl('iirt_announcement'));
    
+    }
+    
+    public function menuConnectAction($menu)
+    {
         
-        
+        $session = $this->get('session');
+        $user_id = $session->get('matricule');
+        $user = $this->chercherUserUnique($user_id, 'IirtUserBundle:Student');
+       // if ($menu == 1)
+            return $this->render('IirtUserBundle:user:connexion.html.twig',array('user'=> $user, 'menu' => $menu ));
+       /* elseif ($menu == 2) 
+            return $this->render('IirtUserBundle:user:connexion.html.twig',array('user'=> $user));*/
+       
     }
     
     public function logoutAction()
@@ -281,10 +340,49 @@ class UserController extends Controller
         return $user;        
     }
     
+    public function listOfUseWithRole($user_role)
+    {
+        $rolesArray = chercherRole($user_role);
+        foreach($rolesArray as $element) {
+            $roleInstance = $element;
+        }
+        return $roleInstance;        
+    }
+    
+    public function chercherRole($user_role)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Role');
+        $rolesArray = $repository->findBy(array("id" => $user_role));
+        return $rolesArray;        
+    }
+    
+    public function chercherRoleUtilisateur($user_role)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('IirtUserBundle:Role');
+        $rolesArray = $repository->findBy(array("id" => $user_role));
+        foreach($rolesArray as $element) {
+            $roleInstance = $element;
+        }
+        return $roleInstance;        
+    }
+    
+    public function chercherUserUnique($id,$rep)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository($rep);
+        $userArray = $repository->findBy(array('matricule' => $id));
+        foreach($userArray as $element)
+        {
+            // Récupération du service
+            $userInstance = $element;
+        }
+        
+        return $userInstance;        
+    }
     public function chercherUser($id,$rep)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository($rep);
         $user = $repository->findBy(array('matricule' => $id));
+        
         return $user;        
     }
     
@@ -301,6 +399,16 @@ class UserController extends Controller
         {
             throw $this->createNotFoundException('Utilisateur avec id='.$id.' inexistant.');
         }
+    }
+    public function checkUserRole($id,$user)
+    {
+        $user = repository(ROLE)->findBy(array('' => $id));
+        return $user; 
+    }
+    private function repository($rep)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository($rep);
+        return $repository; 
     }
     
 }

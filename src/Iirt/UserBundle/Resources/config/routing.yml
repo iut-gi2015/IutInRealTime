@@ -16,13 +16,31 @@ iirt_user_read:
     defaults: { _controller: IirtUserBundle:User:afficher }
     requirements:
         id:  \d+
-
+        
+iirt_user_list_student:
+    path:     user/liste/{role}
+    defaults: { _controller: IirtUserBundle:User:listeEtud }
+    requirements:
+        id:  \d+
+        
+iirt_user_list_editeur:
+    path:     user/liste/
+    defaults: { _controller: IirtUserBundle:User:listeEditeur }
+       
 iirt_user_modify_student:
     path:     user/modifieretudiant/{id}
     defaults: { _controller: IirtUserBundle:User:modifierEtud }
     requirements:
         id:  \d+
         
+iirt_user_role:
+    path:     user/modifierRole/{id}
+    defaults: { _controller: IirtUserBundle:User:modifierRole }
+       
+iirt_user_editeur:
+    path:     user/nouvel editeur/{id}
+    defaults: { _controller: IirtUserBundle:User:ajoutEditeur }
+
 iirt_user_modify_teacher:
     path:     user/modifierenseignant/{id}
     defaults: { _controller: IirtUserBundle:User:modifierEns }
@@ -34,6 +52,10 @@ iirt_user_delete:
     defaults: { _controller: IirtUserBundle:User:supprimer }
     requirements:
         id:  \d+
+    
+iirt_user_menu:
+    path:     user/menu/
+    defaults: { _controller: IirtUserBundle:User:menuConnect }
 
 iirt_user_login:
     path:     /login

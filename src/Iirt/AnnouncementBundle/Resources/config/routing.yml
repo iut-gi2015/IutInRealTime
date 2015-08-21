@@ -2,6 +2,14 @@ iirt_announcement:
     path:     /annonces/index
     defaults: { _controller: IirtAnnouncementBundle:Announcement:index }
 
+iirt_announcement_setMeeting:
+    path:     /annonces/programmer une réunion
+    defaults: { _controller: IirtAnnouncementBundle:Announcement:meetingAdd }
+ 
+iirt_announcement_add_image:
+    path:     /annonces/ajouter affiche
+    defaults: { _controller: IirtAnnouncementBundle:Announcement:ajouterAffiche }
+ 
 iirt_announcement_add:
     path:     /annonces/ajouter
     defaults: { _controller: IirtAnnouncementBundle:Announcement:ajouter }

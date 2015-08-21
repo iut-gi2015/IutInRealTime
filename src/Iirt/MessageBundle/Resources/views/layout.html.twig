@@ -5,16 +5,9 @@
 
 {% block section %}
     
-      <nav>
-        <ul>
-          <li class="current">
-              <a href="{{ path('iirt_message_homepage') }}" class="m2" >liste des messages</a>
-          </li>
-          <li>
-              <a href="{{ path('iirt_message_afficherEns') }}" class="m2" > nouveau message </a>
-          </li>
-        </ul>
-      </nav>
+        {% if app.session.get('department') or app.session.get('matricule') %}
+        {{ render(controller('IirtUserBundle:User:menuConnect',{menu: 3})) }}
+        {% endif %}
       <div class="row">
         {% block contenu %}
             

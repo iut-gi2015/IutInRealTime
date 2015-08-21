@@ -1,0 +1,49 @@
+{# src/Iirt/AnnouncementBundle/Resources/views/Announcement/ajouter.html.twig #}
+
+{% extends "IirtAnnouncementBundle::layout.html.twig" %}
+
+{% block bannierre %}
+    
+{% endblock %} 
+      
+{% block contenu %}
+
+<h3>Formulaire Annonce</h3>
+<div class="demo">
+    <form method="post" action="{{ path('iirt_announcement_setMeeting') }}">
+        
+        <textarea name="subject"> </textarea>
+        <input name="date" type="text" id="datepicker" />
+        <input name="heure" type="time" placeholder="12:00" />
+        
+        <input type="submit" class="btn btn-primary" />
+    </form>
+</div>
+    
+<h3>Formulaire Annonce</h3>
+<div class="demo">
+    {% for reponse in meetings %}
+        {{ reponse.dateMeeting|date('d/m/Y') }} {{ reponse.date|date('d/m/Y') }}
+        <p> {{ reponse.subject }}</p>
+    {% endfor %}
+</div>
+
+{% block javascript %}
+<script type="text/javascript" src="{{ asset('scr/jquery.js')}}"></script>
+<script type="text/javascript" src="{{ asset('scr/jquery.ui.core.js')}}"></script>
+<script type="text/javascript" src="{{ asset('scr/jquery.ui.widget.js')}}"></script>
+<script type="text/javascript" src="{{ asset('scr/jquery.ui.datepicker.js')}}"></script>
+<script type="text/javascript" src="{{ asset('scr/jquery.ui.datepicker-fr.js')}}"></script>
+<script type="text/javascript">
+    
+	$(function() {
+		$.datepicker.setDefaults( $.datepicker.regional[ "" ] );
+		$( "#datepicker" ).datepicker( $.datepicker.regional[ "fr" ] );
+		$( "#locale" ).change(function() {
+			$( "#datepicker" ).datepicker( "option",
+				$.datepicker.regional[ $( this ).val() ] );
+		});
+	});
+</script>
+{% endblock %}
+{% endblock %}

@@ -11,5 +11,9 @@ iirt_message_answer:
     defaults: { _controller: IirtMessageBundle:Message:answer }
 
 iirt_message_afficherEns:
-    path:     /message/new
+    path:     /message/new2
     defaults: { _controller: IirtMessageBundle:Message:afficherEns }
+    
+iirt_message_afficherEtud:
+    path:     /message/new
+    defaults: { _controller: IirtMessageBundle:Message:afficherEtud }

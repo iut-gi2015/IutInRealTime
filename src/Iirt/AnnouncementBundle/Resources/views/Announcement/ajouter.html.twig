@@ -15,4 +15,73 @@
     </form>
 </div>
 
+<div class="bgColor">
+<form id="uploadForm" action="upload.php" method="post">
+
+<div id="uploadFormLayer">
+<label>Upload Image File:</label><br/>
+<input name="userImage" type="file" class="inputFile" />
+<input type="submit" value="Submit" class="btnSubmit" />
+</form>
+</div>
+</div>
+<div id="targetLayer">No Image</div>
+<style>
+body {
+font-family: Arial;
+font-size: 14px;
+}
+.bgColor {
+width: 440px;
+height:100px;
+background-color: #F9D735;
+}
+.bgColor label{
+font-weight: bold;
+color: #A0A0A0;
+}
+#uploadFormLayer{
+float:right;
+padding: 10px;
+}
+.btnSubmit {
+background-color: #3FA849;
+padding:4px;
+border: #3FA849 1px solid;
+color: #FFFFFF;
+}
+.inputFile {
+padding: 3px;
+background-color: #FFFFFF;
+}
+
+</style>
+
+{% block javascript %}
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery_1.js')}}"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function (e) {
+	$("#uploadForm").on('submit',(function(e) {
+		e.preventDefault();
+		$.ajax({
+        	url: "iirt_announcement_add_image",
+			type: "POST",
+			data:  new FormData(this),
+			contentType: false,
+    	    cache: false,
+			processData:false,
+			success: function(data)
+		    {
+			$("#targetLayer").html(data);
+		    },
+		  	error: function() 
+	    	{
+	    	} 	        
+	   });
+	}));
+});
+</script>
+{% endblock %}
 {% endblock %}
